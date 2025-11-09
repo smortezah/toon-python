@@ -168,6 +168,8 @@ class TestRoundTripConsistency:
             data = {"value": val}
             encoded = encode(data)
             decoded = decode(encoded)
+            # Assert it's a dict before trying to access
+            assert isinstance(decoded, dict)
             # They should come back as strings
             assert decoded["value"] == val
             assert isinstance(decoded["value"], str)
@@ -181,6 +183,8 @@ class TestRoundTripConsistency:
             data = {"value": num}
             encoded = encode(data)
             decoded = decode(encoded)
+            # Assert it's a dict before trying to access
+            assert isinstance(decoded, dict)
             # They should come back as numbers (with potential float/int conversion)
             assert decoded["value"] == num
             assert isinstance(decoded["value"], (int, float))
