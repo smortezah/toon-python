@@ -6,7 +6,6 @@ Converts Python-specific types to JSON-compatible values before encoding:
 - datetime/date → ISO 8601 strings
 - Decimal → float
 - tuple/set/frozenset → sorted lists
-- bytes/bytearray → base64 encoded strings
 - pathlib.Path → string representation
 - Infinity/NaN → null
 - Functions/callables → null
@@ -18,7 +17,7 @@ import sys
 from collections.abc import Mapping
 from datetime import date, datetime
 from decimal import Decimal
-from pathlib import Path, PurePath
+from pathlib import PurePath
 from typing import Any
 
 # TypeGuard was added in Python 3.10, use typing_extensions for older versions
@@ -76,7 +75,6 @@ def normalize_value(value: Any) -> JsonValue:
         - Recursive: normalizes nested structures
         - Sets are sorted for deterministic output
         - Heterogeneous sets sorted by repr() if natural sorting fails
-        - bytes/bytearray are base64 encoded
         - Path objects are converted to their string representation
     """
     if value is None:
