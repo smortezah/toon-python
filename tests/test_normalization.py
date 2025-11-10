@@ -455,8 +455,6 @@ class TestPathNormalization:
 
     def test_path_in_array(self):
         """Path objects in arrays should be normalized."""
-        from pathlib import Path
-
         data = {"paths": [Path("/tmp/a"), Path("/tmp/b"), Path("/tmp/c")]}
         result = encode(data)
         decoded = decode(result)
@@ -465,8 +463,6 @@ class TestPathNormalization:
 
     def test_path_in_nested_structure(self):
         """Path objects in nested structures should be normalized."""
-        from pathlib import Path
-
         data = {
             "project": {
                 "root": Path("/home/user/project"),
